@@ -1,8 +1,6 @@
 package nitish.MeetingAssistant.DTOs;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -10,10 +8,12 @@ import java.util.List;
 
 @Getter
 @Setter
-public class MeetingDto {
+public class ConflictListDTO {
+    private String name;
+    private String email;
     private LocalDateTime dateTime;
-    private List<Integer> userId;
+    private List<List<ConflictUser>> userList;
 
-    public MeetingDto() {
+    public ConflictListDTO() {
     }
 }

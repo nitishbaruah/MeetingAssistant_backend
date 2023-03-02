@@ -9,6 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,8 +18,8 @@ import java.util.List;
 @Table(name="meeting")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
+
 public class Meeting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +28,8 @@ public class Meeting {
     @ManyToMany
     @JoinColumn
     private List<User> users;
+
+    private LocalDateTime dateTime;
 
     @CreationTimestamp
     private Date creationDateTime;
@@ -36,9 +40,5 @@ public class Meeting {
     @UpdateTimestamp
     private Date updateDateTime;
     //private LocalDateTime dateTime;
-
-    @ManyToOne
-    @JoinColumn
-    private MeetingList meetingList;
-
+    
 }

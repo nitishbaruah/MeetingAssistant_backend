@@ -1,6 +1,6 @@
 package nitish.MeetingAssistant.Controller;
 
-import nitish.MeetingAssistant.DTOs.MeetingDto;
+import nitish.MeetingAssistant.DTOs.*;
 import nitish.MeetingAssistant.Model.User;
 import nitish.MeetingAssistant.Service.MeetingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +15,27 @@ public class MeetingController {
     MeetingService meetingService;
 
     @PostMapping("/addUser")
-    public String addUser(@RequestBody List<User> users){
-       return meetingService.addUser(users);
+    public String addUser(@RequestBody List<userDTO> users){
+
+        return meetingService.addUser(users);
     }
 
     @PostMapping("/addMeeting")
     public String addMeet(@RequestBody MeetingDto meetingDto){
+
         return meetingService.addMeeting(meetingDto);
     }
 
     @GetMapping("/freeSlots")
-    public void getFreeSlots(@RequestBody List<Integer> userIds){
-
+    public List<freeSlotDTO> getFreeSlots(@RequestBody userIdDTO userId){
+        return meetingService.freeSlot(userId);
     }
+
     @GetMapping("/scheduleConflicts")
-    public void getFreeSlots(){
-
+    public List<ConflictListDTO> getFreeSlots(){
+        return meetingService.scheduleConflict();
     }
+
     @PutMapping("/cancelMeeting")
     public  void cancelMeeting(@RequestParam("q") Integer meetingId){
 
